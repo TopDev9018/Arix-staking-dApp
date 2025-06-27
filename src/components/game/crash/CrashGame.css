@@ -1,0 +1,337 @@
+/* ================================================================ */
+/* BASE STYLES & LAYOUT                                             */
+/* ================================================================ */
+
+.crash-game-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+.history-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+.history-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.history-item {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 50px;
+  text-align: center;
+}
+
+.history-item.green {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.history-item.red {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.crash-game-area {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.bets-panel {
+  width: 300px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-and-controls-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* ================================================================ */
+/* CHART STYLES                                                     */
+/* ================================================================ */
+
+.crash-chart-container {
+  position: relative;
+  flex: 1;
+  min-height: 300px;
+  background: #24243e; /* Dark blue-purple background from video */
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+/* Grid Overlay */
+.chart-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  /* NEW: Add transition for blur effect */
+  transition: filter 0.5s ease-in-out;
+}
+
+/* Parallax Background Layers */
+.parallax-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 70%;
+  background-repeat: repeat-x;
+  z-index: 0;
+  opacity: 0.8;
+  animation: slide-parallax linear infinite;
+  /* NEW: Add transition for blur effect */
+  transition: filter 0.5s ease-in-out;
+}
+.parallax-bg.layer-1 {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120"><path d="M0,80 C150,120 350,0 500,60 S650,100 800,40 V120 H0 Z" fill="%232d2d4f"/></svg>');
+  animation-duration: 40s;
+}
+.parallax-bg.layer-2 {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120"><path d="M0,60 C200,100 300,20 500,70 S700,120 800,50 V120 H0 Z" fill="%23373762"/></svg>');
+  animation-duration: 25s;
+  height: 60%;
+}
+.parallax-bg.layer-3 {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120"><path d="M0,90 C100,50 300,120 500,80 S600,40 800,90 V120 H0 Z" fill="%23484880"/></svg>');
+  animation-duration: 15s;
+  height: 50%;
+}
+
+@keyframes slide-parallax {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+/* NEW: Style to apply blur effect during countdown */
+.crash-chart-container.blur-effect-active .parallax-bg,
+.crash-chart-container.blur-effect-active .chart-grid-overlay {
+  filter: blur(8px);
+}
+
+
+/* Circular Countdown Timer */
+.game-countdown-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  /* NEW: Entrance animation */
+  animation: countdown-fade-in 0.5s ease-out forwards;
+}
+
+/* NEW: Keyframes for the countdown timer's appearance */
+@keyframes countdown-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.game-countdown-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.game-countdown-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 8;
+}
+.game-countdown-fg {
+  fill: none;
+  stroke: #ffc107;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 339.292; /* 2 * pi * 54 */
+  stroke-dashoffset: 339.292;
+  animation: countdown-circle-anim linear forwards;
+}
+@keyframes countdown-circle-anim {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 339.292; }
+}
+.game-countdown-number {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.game-countdown-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Multiplier Display */
+.multiplier-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: bold;
+  z-index: 5;
+  text-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 2px 2px 4px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.crashed-text {
+  display: block;
+  font-size: clamp(18px, 2.5vw, 36px);
+  color: #e74c3c;
+  animation: crash-pulse 0.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px #ff3c3c, 0 0 20px #e74c3c, 0 0 30px #c0392b;
+}
+@keyframes crash-pulse { from { opacity: 0.8; transform: scale(1); } to { opacity: 1; transform: scale(1.1); } }
+
+/* SVG Trail System */
+.trail-svg-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+.trail-path-line {
+  fill: none;
+  stroke: url(#trail-stroke-gradient);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px #ffc107);
+}
+
+
+/* Plane Icon */
+.rocket-container {
+  position: absolute;
+  z-index: 3;
+  transition: all 0.1s linear;
+}
+.plane-icon {
+  font-size: 24px;
+  color: #fff;
+  filter: drop-shadow(0 0 10px #ffc107) drop-shadow(0 0 20px #ffc107);
+}
+
+/* ================================================================ */
+/* EXPLOSION & PARTICLE EFFECTS                                     */
+/* ================================================================ */
+
+.explosion-container { position: absolute; width: 1px; height: 1px; z-index: 10; pointer-events: none; }
+.explosion-flash { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, white 0%, rgba(255, 248, 220, 0.9) 20%, rgba(255, 215, 0, 0.8) 40%, rgba(255, 69, 0, 0.6) 70%, transparent 100%); animation: explosion-flash-anim 0.4s ease-out forwards; transform: translate(-50%, -50%); }
+@keyframes explosion-flash-anim { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0); } 30% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
+.shockwave { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 4px solid rgba(255, 255, 255, 0.8); animation: shockwave-anim 1s ease-out forwards; transform: translate(-50%, -50%); }
+.shockwave.shockwave-delayed { animation-delay: 0.2s; border-color: rgba(255, 215, 0, 0.6); border-width: 3px; }
+@keyframes shockwave-anim { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0); border-width: 4px; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(8); border-width: 1px; } }
+.fire-particle { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 224, 1) 0%, rgba(255, 215, 0, 0.9) 30%, rgba(255, 69, 0, 0.8) 70%, rgba(220, 20, 60, 0) 100%); box-shadow: 0 0 15px rgba(255, 100, 0, 1); animation: fire-anim 1.2s ease-out forwards; animation-delay: var(--delay); }
+@keyframes fire-anim { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: rotate(calc(var(--i) * 14.4deg)) translateY(calc(-120px - (var(--i) * 3px))) scale(0); opacity: 0; } }
+.smoke-particle { position: absolute; width: 25px; height: 25px; border-radius: 50%; background: radial-gradient(circle, rgba(100, 100, 100, 0.7) 0%, rgba(60, 60, 60, 0.5) 50%, rgba(30, 30, 30, 0) 80%); filter: blur(2px); animation: smoke-anim 2.5s ease-out forwards; animation-delay: var(--delay); }
+@keyframes smoke-anim { 0% { transform: translate(0, 0) scale(0); opacity: 1; } 50% { opacity: 0.8; } 100% { transform: rotate(calc(var(--i) * 12deg)) translateY(calc(-150px - (var(--i) * 5px))) scale(4); opacity: 0; filter: blur(5px); } }
+.debris-particle { position: absolute; width: 5px; height: 5px; background: #555; box-shadow: 0 0 5px #222; animation: debris-anim 2s cubic-bezier(0.3, 0.5, 0.4, 1) forwards; animation-delay: var(--delay); }
+@keyframes debris-anim { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: rotate(calc(var(--i) * 25deg)) translateY(calc(-80px - (var(--i) * 8px))) translateX(calc(sin(var(--i)) * 40px)) rotate(calc(var(--i) * 180deg)) scale(0.5); opacity: 0; } }
+.explosion-container::after { content: ''; position: absolute; width: 150px; height: 150px; background: radial-gradient(circle, transparent 50%, rgba(255, 100, 0, 0.1) 70%, transparent 80%); border-radius: 50%; animation: heat-distortion-anim 1.5s ease-out forwards; transform: translate(-50%, -50%); filter: blur(3px); animation-delay: 0.1s; }
+@keyframes heat-distortion-anim { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(3); } }
+
+/* ================================================================ */
+/* UI AND CONTROLS                                                  */
+/* ================================================================ */
+
+.bet-controls-area { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; backdrop-filter: blur(10px); }
+.controls-container { display: flex; flex-direction: column; gap: 15px; }
+.bet-input, .ant-input-group-addon { background: rgba(255, 255, 255, 0.1) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; color: white !important; }
+.ant-input-group-addon { border-right: none !important; }
+.bet-input:focus { border-color: rgba(255, 255, 255, 0.4) !important; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important; }
+.quick-bet-buttons { display: flex; gap: 10px; justify-content: center; }
+.quick-bet-buttons button { flex: 1; background: rgba(255, 255, 255, 0.1) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; color: white !important; }
+.quick-bet-buttons button:hover { background: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.3) !important; }
+.crash-btn { width: 100%; height: 50px; font-size: 16px; font-weight: bold; border-radius: 8px; transition: all 0.3s ease; border: none; text-transform: uppercase; letter-spacing: 1px; }
+
+.crash-btn.place-bet { background: var(--app-button-primary-bg, "#A3AECF") !important; color: var(--app-button-primary-text, "#08090A") !important; box-shadow: 0 4px 15px rgba(163, 174, 207, 0.2); }
+.crash-btn.place-bet:hover { background: var(--app-button-primary-hover-bg, "#8D9AC3") !important; box-shadow: 0 6px 20px rgba(163, 174, 207, 0.3); transform: translateY(-2px); }
+.crash-btn.cashout { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; animation: cashout-pulse 1s ease-in-out infinite alternate; }
+@keyframes cashout-pulse { from { box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); } to { box-shadow: 0 6px 25px rgba(243, 156, 18, 0.6); } }
+.crash-btn.cashout:hover { animation-play-state: paused; background: linear-gradient(135deg, #e67e22, #f39c12); transform: translateY(-2px); }
+.crash-btn.placed, .crash-btn.cashed-out { background: linear-gradient(135deg, #3498db, #2980b9); color: white; cursor: default; }
+.crash-btn.crashed { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; cursor: default; }
+
+.auto-controls-container { padding: 10px 4px; }
+.auto-cashout-row { display: flex; align-items: center; gap: 12px; }
+.auto-cashout-row .ant-input-group-wrapper { flex-grow: 1; }
+
+.bets-list-container { height: 100%; overflow-y: auto; padding-right: 10px; }
+.bet-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 6px; margin-bottom: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+.bet-row.my-bet-row { background: rgba(46, 204, 113, 0.1); border-color: rgba(46, 204, 113, 0.3); }
+.player-address { font-family: monospace; font-size: 12px; color: rgba(255, 255, 255, 0.8); }
+.bet-amount { font-weight: bold; color: #f39c12; }
+.game-history-tabs .ant-tabs-nav { margin-bottom: 20px !important; }
+.game-history-tabs .ant-tabs-tab { color: rgba(255, 255, 255, 0.7) !important; }
+.game-history-tabs .ant-tabs-tab-active .ant-tabs-tab-btn { color: white !important; }
+.game-history-tabs .ant-tabs-ink-bar { background: #2ecc71 !important; }
+.game-history-tabs .ant-tabs-content-holder { height: 100%; overflow: hidden; }
+.mobile-tabs-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 10px 20px 10px; flex-shrink: 0; }
+@media (max-width: 768px) {
+  .crash-game-page-container { height: auto; }
+  .crash-game-area { flex-direction: column; padding: 10px; overflow: visible; }
+  .crash-chart-container { min-height: 250px; height: 40vh; flex: none; }
+  .multiplier-overlay { font-size: 10vw; }
+  .crashed-text { font-size: 5vw; }
+  .controls-container { gap: 10px; }
+  .quick-bet-buttons { flex-wrap: wrap; }
+  .crash-btn { height: 45px; font-size: 14px; }
+}

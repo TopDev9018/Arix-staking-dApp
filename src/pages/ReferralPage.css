@@ -1,0 +1,147 @@
+
+
+.referral-page-container {
+    padding: 0px 0px 24px 0px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.referral-page-container .page-title {
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.referral-link-card {
+    text-align: center;
+    padding: 24px !important;
+    background-color: #1A1A1A;
+    border-radius: 14px;
+    border: 1px solid #303030;
+}
+
+.referral-link-card .ant-card-body {
+    padding: 0 !important;
+}
+
+.referral-card-title {
+    color: #7065F0 !important;
+    margin-top: 0;
+    margin-bottom: 16px !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+}
+
+.referral-link-display {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.referral-link-text {
+    color: #E0E0E5 !important;
+    background: #252525 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+    word-break: break-all;
+    border: 1px solid #38383A;
+    display: inline-block;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.referral-link-text .ant-typography-copy {
+    margin-left: 10px !important;
+}
+
+.share-button {
+    font-weight: 500 !important;
+}
+
+.summary-card .ant-card-head-title {
+    font-size: 1.1rem !important;
+    color: #E0E0E5 !important;
+    font-weight: 500 !important;
+}
+.summary-card .ant-card-head .anticon {
+    margin-right: 8px;
+    color: #7065F0;
+}
+
+.summary-card .ant-card-body {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.summary-card .ant-statistic-title {
+    color: #A0A0A5 !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 4px !important;
+}
+.summary-card .ant-statistic-content {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+}
+
+
+.section-title {
+    color: #F5F5F7;
+    text-align: center;
+    font-weight: 600 !important;
+    font-size: 1.4rem !important;
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
+}
+
+.plan-explanation-card {
+    height: 100%;
+    background-color: #1A1A1A;
+    border: 1px solid #303030;
+    border-radius: 10px;
+}
+.plan-explanation-card .ant-card-body {
+    padding: 18px;
+}
+.plan-explanation-card .plan-title {
+    color: #7065F0 !important;
+    margin-bottom: 10px !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+}
+.plan-explanation-card .plan-detail {
+    color: #D1D1D6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+.plan-explanation-card .plan-detail strong {
+    color: #E0E0E5;
+    font-weight: 500;
+}
+
+
+.centered-message-card {
+    text-align: center;
+    padding: 40px 20px !important;
+}
+
+
+@media (max-width: 767px) {
+    .referral-page-container .page-title {
+        font-size: 1.6rem !important;
+    }
+    .referral-link-text {
+        font-size: 0.9rem !important;
+        padding: 8px 12px !important;
+    }
+    .summary-card .ant-card-head-title {
+        font-size: 1rem !important;
+    }
+    .summary-card .ant-statistic-content {
+        font-size: 1.15rem !important;
+    }
+    .section-title {
+        font-size: 1.25rem !important;
+    }
+}

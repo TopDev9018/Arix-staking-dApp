@@ -1,0 +1,307 @@
+/* AR_FRONTEND/src/components/game/CoinFlipGame.css */
+:root {
+    --cf-bg-main: #000000;
+    --cf-bg-element: #08090A;
+    --cf-bg-container: #1C1C1E;
+    --cf-border-color: #2D3142;
+    --cf-primary-text: #A3AECF;
+    --cf-secondary-text: #7E8AA2;
+    --cf-accent-color: #A3AECF; 
+    --cf-button-primary-bg: #A3AECF;
+    --cf-button-primary-text: #08090A;
+    --cf-button-primary-hover-bg: #8D9AC3;
+    --cf-green-light: #4CAF50;
+    --cf-red-light: #F44336;
+}
+
+.cf-game-page-wrapper {
+    background-color: var(--cf-bg-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--cf-primary-text);
+    padding-bottom: 20px;
+}
+
+.cf-game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--cf-bg-element);
+    border-bottom: 1px solid var(--cf-border-color);
+    height: 56px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.cf-game-header-back-button.ant-btn-text {
+    color: var(--cf-secondary-text);
+    font-size: 20px;
+    padding: 4px 8px;
+}
+.cf-game-header-back-button.ant-btn-text:hover {
+    color: var(--cf-primary-text);
+    background-color: rgba(163, 174, 207, 0.1);
+}
+
+.cf-game-header-balance {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--cf-bg-container);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+.cf-game-header-balance .cf-balance-icon {
+    color: var(--cf-primary-text);
+}
+.cf-game-header-balance .cf-balance-value {
+    color: var(--cf-primary-text);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.cf-game-main-content {
+    flex-grow: 1;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cf-game-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 8px;
+}
+.cf-last-flips-text {
+    color: var(--cf-secondary-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    visibility: hidden; 
+}
+.cf-game-main-title {
+    color: var(--cf-primary-text) !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    flex-grow: 1;
+}
+.cf-game-title-actions { display: flex; gap: 4px; }
+.cf-title-action-icon.ant-btn-text {
+    color: var(--cf-secondary-text) !important;
+    font-size: 20px !important;
+    padding: 6px !important;
+}
+.cf-title-action-icon.ant-btn-text:hover {
+    color: var(--cf-primary-text) !important;
+    background-color: rgba(163, 174, 207, 0.1) !important;
+}
+.cf-game-subtitle {
+    text-align: center;
+    color: var(--cf-secondary-text);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    max-width: 380px;
+}
+
+.cf-coin-stats-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 20px 0;
+    position: relative;
+    background-color: var(--cf-bg-element);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+.cf-game-stat-display { text-align: center; flex: 1; }
+.cf-game-stat-label {
+    display: block; color: var(--cf-secondary-text); font-size: 0.75rem; font-weight: 500;
+    margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.cf-game-stat-value {
+    display: block; color: var(--cf-primary-text); font-size: 1.6rem; font-weight: 700; line-height: 1.1;
+}
+
+.cf-central-coin-wrapper {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle, #2a2a2e 0%, #18181a 70%);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3), inset 0 3px 8px rgba(0,0,0,0.4);
+    position: relative; flex-shrink: 0; border: 3px solid #2D3142;
+}
+.cf-central-coin-image {
+    width: 110px; height: 110px; object-fit: contain;
+}
+.cf-central-coin-wrapper.flipping .cf-central-coin-image {
+    animation: coinFlip3D 1.8s ease-in-out infinite;
+}
+
+@keyframes coinFlip3D {
+    0% { transform: perspective(1000px) rotateY(0deg) scale(1); }
+    50% { transform: perspective(1000px) rotateY(180deg) scale(1.05); }
+    100% { transform: perspective(1000px) rotateY(360deg) scale(1); }
+}
+
+.cf-game-result-banner {
+    padding: 10px 16px; border-radius: 10px; margin: 0 auto 20px auto;
+    text-align: center; border-width: 1px; border-style: solid;
+    max-width: 90%; width: 100%; box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out; opacity: 0; transform: translateY(8px);
+}
+.cf-game-result-banner.active { opacity: 1; transform: translateY(0); }
+.cf-game-result-banner.win { background-color: rgba(76, 175, 80, 0.15); border-color: rgba(76, 175, 80, 0.4); }
+.cf-game-result-banner.loss, .cf-game-result-banner.error { background-color: rgba(244, 67, 54, 0.15); border-color: rgba(244, 67, 54, 0.4); }
+
+.cf-game-result-banner-title {
+    display: block; font-size: 1.1rem; margin-bottom: 4px; font-weight: 600;
+    color: var(--cf-primary-text); text-transform: uppercase;
+}
+.cf-game-result-banner.win .cf-game-result-banner-title { color: var(--cf-green-light); }
+.cf-game-result-banner.loss .cf-game-result-banner-title,
+.cf-game-result-banner.error .cf-game-result-banner-title { color: var(--cf-red-light); }
+.cf-game-result-banner-details { font-size: 0.85rem; color: var(--cf-secondary-text); }
+
+.cf-betting-area {
+    background-color: var(--cf-bg-element); padding: 20px; border-radius: 12px;
+    margin-bottom: 24px; border: 1px solid var(--cf-border-color); width: 100%; max-width: 400px;
+}
+.cf-bet-area-title {
+    display: block; color: var(--cf-secondary-text); font-size: 0.8rem; font-weight: 500;
+    margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; text-align: center;
+}
+.cf-bet-input-outer-wrapper {
+    display: flex; align-items: center; background-color: var(--cf-bg-container);
+    border: 1px solid var(--cf-border-color); border-radius: 8px; padding: 6px 12px; margin-bottom: 16px;
+}
+.cf-bet-amount-input.ant-input-number {
+    flex-grow: 1; background-color: transparent !important; border: none !important;
+    box-shadow: none !important; height: 44px !important;
+}
+.cf-bet-amount-input .ant-input-number-input {
+    color: var(--cf-primary-text) !important; font-size: 1.3rem !important;
+    font-weight: 600 !important; padding: 0 8px !important; text-align: center !important;
+}
+.cf-bet-input-currency-label {
+    color: var(--cf-secondary-text); font-size: 0.9rem; font-weight: 500; margin-left: 8px;
+}
+.cf-main-flip-button.ant-btn-primary {
+    width: 100%; height: 50px !important; font-size: 1.1rem !important; font-weight: 600 !important;
+    letter-spacing: 0.8px; background: var(--cf-button-primary-bg) !important;
+    color: var(--cf-button-primary-text) !important; border: none !important;
+    border-radius: 10px !important; box-shadow: 0 4px 10px rgba(0,0,0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+.cf-main-flip-button.ant-btn-primary:hover:not([disabled]) {
+    background: var(--cf-button-primary-hover-bg) !important; box-shadow: 0 6px 12px rgba(0,0,0, 0.25);
+    transform: translateY(-1px);
+}
+.cf-main-flip-button.ant-btn-primary[disabled] {
+    background: #38383A !important; color: #6A6A6E !important; box-shadow: none;
+}
+.cf-insufficient-alert.ant-alert-error {
+    margin-top: 12px; background-color: rgba(244, 67, 54, 0.1) !important;
+    border-color: rgba(244, 67, 54, 0.3) !important; border-radius: 8px;
+}
+.cf-insufficient-alert .ant-alert-message { color: #FFCDD2 !important; font-weight: 500; }
+.cf-insufficient-alert .ant-alert-icon { color: var(--cf-red-light) !important; }
+
+.cf-choice-selection-area { margin-top: 20px; text-align: center; width: 100%; max-width: 400px; }
+.cf-choice-prompt-text {
+    color: var(--cf-secondary-text); font-size: 0.9rem; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; font-weight: 500;
+}
+.cf-choice-prompt-text .anticon-check-circle { color: var(--cf-green-light); margin-right: 8px; font-size: 1.1rem; }
+
+.cf-choice-radio-group.ant-radio-group { display: flex; gap: 16px; justify-content: center; }
+.cf-choice-radio-button.ant-radio-button-wrapper {
+    flex: 1; max-width: 160px; height: 140px !important; border-radius: 70px !important;
+    background-color: var(--cf-bg-element) !important; border: 2px solid var(--cf-border-color) !important;
+    color: var(--cf-secondary-text) !important; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 12px !important;
+    transition: all 0.2s ease-in-out; box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+.cf-choice-radio-icon {
+    color: var(--cf-secondary-text); margin-bottom: 10px; opacity: 0.8;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.cf-choice-radio-button.ant-radio-button-wrapper-checked {
+    background-color: var(--cf-bg-container) !important; border-color: var(--cf-accent-color) !important;
+    color: var(--cf-primary-text) !important; transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0, 0.25);
+}
+.cf-choice-radio-button.ant-radio-button-wrapper-checked .cf-choice-radio-icon {
+    opacity: 1; transform: scale(1.1); color: var(--cf-accent-color);
+}
+.cf-choice-radio-button.ant-radio-button-wrapper:not(.ant-radio-button-wrapper-checked):hover {
+    border-color: var(--cf-accent-color) !important; color: var(--cf-primary-text) !important;
+    transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+}
+.cf-choice-radio-button.ant-radio-button-wrapper:not(.ant-radio-button-wrapper-checked):hover .cf-choice-radio-icon {
+    opacity: 0.9; color: var(--cf-primary-text);
+}
+.cf-choice-radio-button .ant-radio-button-wrapper-children {
+    font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px;
+    display: flex; flex-direction: column; align-items: center; color: inherit !important;
+}
+.cf-choice-radio-button .ant-radio-button-wrapper-children > .ant-typography {
+    color: inherit !important; font-weight: inherit; font-size: inherit;
+}
+
+.cf-game-message-popup .ant-message-custom-content {
+    background-color: var(--cf-bg-container) !important; color: var(--cf-primary-text) !important;
+    border-radius: 8px !important; padding: 10px 14px !important; border: 1px solid var(--cf-border-color);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25); font-size: 0.85rem;
+}
+.cf-game-message-popup.cf-error-popup .ant-message-custom-content {
+    background-color: rgba(244, 67, 54, 0.2) !important; border-color: rgba(244, 67, 54, 0.4) !important;
+    color: #FFD2D2 !important;
+}
+.cf-game-message-popup.cf-warning-popup .ant-message-custom-content {
+    background-color: rgba(255, 193, 7, 0.2) !important; border-color: rgba(255, 193, 7, 0.4) !important;
+    color: #FFF3CD !important;
+}
+.cf-game-message-popup .anticon {
+    font-size: 1em !important; margin-right: 6px !important; color: currentColor !important;
+}
+
+@media (max-width: 380px) {
+    .cf-game-main-content { padding: 16px 12px; }
+    .cf-game-main-title { font-size: 1.3rem !important; }
+    .cf-game-subtitle { font-size: 0.8rem; margin-bottom: 16px; }
+    
+    .cf-coin-stats-area { padding: 12px 0; }
+    .cf-central-coin-wrapper { width: 110px; height: 110px; }
+    .cf-central-coin-image { width: 90px; height: 90px; }
+    .cf-game-stat-value { font-size: 1.4rem; }
+    .cf-game-stat-label { font-size: 0.7rem; }
+
+    .cf-betting-area { padding: 16px; }
+    .cf-bet-amount-input .ant-input-number-input { font-size: 1.1rem !important; }
+    .cf-bet-input-currency-label { font-size: 0.8rem; }
+    .cf-main-flip-button.ant-btn-primary { height: 46px !important; font-size: 1rem !important; }
+
+    .cf-choice-selection-area { margin-top: 16px; }
+    .cf-choice-prompt-text { font-size: 0.8rem; }
+    .cf-choice-radio-group { gap: 12px; }
+    .cf-choice-radio-button.ant-radio-button-wrapper {
+        height: 120px !important; padding: 10px !important; max-width: 130px;
+    }
+    .cf-choice-radio-icon { margin-bottom: 8px; }
+    .cf-choice-radio-button .ant-radio-button-wrapper-children { font-size: 0.9rem; }
+}

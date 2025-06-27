@@ -1,0 +1,234 @@
+/* :root variables are in App.css and theme object in App.jsx */
+
+.task-page-container {
+    padding: 0px 0px 24px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header section for balance, topup/cashout, banner - common styles */
+.page-header-section {
+    background-color: var(--app-bg-dark-section, #111215);
+    border-radius: 0 0 12px 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: -16px; /* Offset app-content padding */
+    margin-right: -16px; /* Offset app-content padding */
+    margin-top: -20px; /* Pull up to remove space from app-content's top padding */
+    padding-left: 16px; /* Restore padding */
+    padding-right: 16px; /* Restore padding */
+    padding-top: 20px; /* Restore padding */
+}
+@media (min-width: 768px) { /* md breakpoint, adjust if needed based on App.jsx Grid.useBreakpoint() */
+    .page-header-section {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+        margin-top: -24px;
+        padding-top: 24px;
+    }
+}
+
+.balance-display-box {
+    background-color: var(--app-bg-dark-element, #08090A);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.balance-amount-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.balance-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--app-bg-dark-container, #1C1C1E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.balance-icon-representation {
+    color: var(--app-primary-text-light, #A3AECF);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.balance-amount-value {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    font-weight: 700 !important;
+    font-size: 2.2rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+.balance-spin .ant-spin-dot i {
+    background-color: var(--app-primary-text-light, #A3AECF) !important;
+}
+
+.balance-currency-label {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.6;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.topup-cashout-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.topup-cashout-buttons .ant-btn {
+    flex-grow: 1;
+    background-color: var(--app-bg-dark-element, #08090A) !important;
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    border: none !important;
+    height: 44px !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    border-radius: 10px !important;
+}
+.topup-cashout-buttons .ant-btn:hover {
+    background-color: var(--app-bg-dark-container, #1C1C1E) !important;
+}
+.topup-cashout-buttons .ant-btn .anticon {
+    margin-right: 8px;
+}
+
+.page-banner {
+    /* background: var(--app-banner-bg, linear-gradient(135deg, #764ba2, #667eea)); */
+    background-color: var(--app-bg-dark-element, #08090A); /* Match buttons for now */
+    border: 1px solid var(--app-border-color, #2D3142);
+    border-radius: 10px;
+    padding: 12px 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.page-banner-text {
+    color: #CAD62A !important; /* Yellowish from example */
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.3;
+    margin: 0 !important;
+}
+/* End Common Header Styles */
+
+
+.task-page-title {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-bottom: 0px !important; /* Reduced as header provides spacing */
+}
+
+.task-list-item .ant-card-head-title {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    font-weight: 600 !important;
+}
+.task-list-item .ant-card-extra .ant-tag {
+    font-weight: 500;
+}
+
+.task-description {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 12px !important;
+}
+
+.task-reward-text {
+    color: #4CAF50 !important; /* Green for rewards */
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+}
+
+.task-action-button.ant-btn-primary {
+    /* Uses ConfigProvider theme */
+}
+
+.task-disabled-button.ant-btn-dashed {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.5;
+    border-color: var(--app-border-color, #2D3142) !important;
+    background: transparent !important;
+}
+
+.task-sub-note {
+    font-size: 0.8em;
+    display:block;
+    margin-top: 8px;
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.6;
+}
+
+.history-list-item .ant-card {
+    border-color: var(--app-border-color, #2D3142) !important;
+}
+.history-list-item .task-title-history {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    font-size: 1rem;
+}
+.history-list-item .submission-date {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.7;
+    font-size: 0.85em;
+}
+.history-list-item .submission-details-text,
+.history-list-item .submission-details-text a {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.6;
+    font-size: 0.8em;
+}
+.history-list-item .submission-details-text a {
+    text-decoration: underline;
+}
+.history-list-item .reward-history-text {
+    color: #4CAF50 !important;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.history-list-item .notes-history-text {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    opacity: 0.5;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.task-modal-title { /* Uses Modal theme from ConfigProvider */ }
+.task-modal-text { /* Uses Modal theme from ConfigProvider */ }
+.task-modal-reward { color: #4CAF50 !important; font-size: 1.05rem; }
+.task-modal-url a {
+    color: var(--app-primary-text-light, #A3AECF) !important;
+    text-decoration: underline;
+    word-break: break-all;
+}
+.task-modal-url a:hover { opacity: 0.8; }
+
+.task-page-container .ant-alert-info {
+    /* Uses Alert theme from ConfigProvider */
+    margin-left: 0; /* Adjusted in JSX for mobile */
+    margin-right: 0; /* Adjusted in JSX for mobile */
+}
+
+
+
+

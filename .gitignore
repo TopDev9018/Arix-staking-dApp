@@ -1,0 +1,56 @@
+# File: AR_FRONTEND/.gitignore
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Vercel
+.vercel
+
+# Vite
+dist
+dist-ssr
+*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+/dist
+/out
+
+# Optional: Mac OS folder attributes
+.DS_Store
+._*
+
+# Optional: Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+.DS_Store
+src/.DS_Store
+src/components/.DS_Store
+.DS_Store
+.DS_Store
+src/.DS_Store

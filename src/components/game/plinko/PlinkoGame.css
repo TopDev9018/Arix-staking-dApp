@@ -1,0 +1,260 @@
+/* AR_FRONTEND/src/components/game/plinko/PlinkoGame.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Color palette meticulously matched with the screenshots */
+    --plinko-bg: #0f111e;
+    --plinko-surface: #1c1f3a; /* Slightly adjusted for better contrast */
+    --plinko-surface-light: #2a2d4f;
+    --plinko-primary: #8b5cf6; /* A more vibrant purple for active elements */
+    --plinko-green: #22c55e;
+    --plinko-green-dark: #16a34a;
+    --plinko-red: #ef4444;
+    --plinko-orange: #f97316;
+    --plinko-yellow: #facc15;
+    --plinko-purple: #a855f7;
+    --plinko-text-primary: #ffffff;
+    --plinko-text-secondary: #a3aecf;
+    --font-family: 'Poppins', sans-serif;
+}
+
+.plinko-galaxy-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    color: var(--plinko-text-primary);
+    font-family: var(--font-family);
+    overflow: hidden;
+    position: relative;
+}
+
+.plinko-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.balance-display {
+    background-color: var(--plinko-surface);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid var(--plinko-surface-light);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.plinko-game-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 1rem;
+    overflow: hidden;
+}
+
+.plinko-canvas-container {
+    flex-grow: 1;
+    position: relative;
+}
+
+.plinko-canvas-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Container for the multiplier values at the bottom of the pyramid */
+.multiplier-bar {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1.5rem; /* Space below the bar */
+    gap: 4px;
+    z-index: 5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none; /* Allow clicks to go through to canvas if needed */
+}
+
+.multiplier-item {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.4rem 0.5rem;
+    border-radius: 6px;
+    color: var(--plinko-text-primary);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+.plinko-controls-panel {
+    background-color: var(--plinko-surface);
+    padding: 1.5rem 1rem;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-row label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--plinko-text-secondary);
+    text-transform: capitalize;
+    padding-left: 0.5rem;
+}
+
+.segmented-control {
+    display: flex;
+    background-color: var(--plinko-surface-light);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.segmented-control button {
+    flex: 1;
+    padding: 0.6rem 0;
+    border: none;
+    background-color: transparent;
+    color: var(--plinko-text-secondary);
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.segmented-control button.active {
+    background-color: var(--plinko-primary);
+    color: var(--plinko-text-primary);
+    box-shadow: 0 2px 15px rgba(139, 92, 246, 0.3);
+}
+
+.segmented-control.rows button {
+    font-size: 0.8rem;
+}
+
+.bet-control {
+    display: flex;
+    align-items: center;
+    background-color: var(--plinko-surface-light);
+    border-radius: 8px;
+}
+
+.bet-control button {
+    background: transparent;
+    border: none;
+    color: var(--plinko-text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0 1rem;
+    cursor: pointer;
+    align-self: stretch;
+    transition: background-color 0.2s;
+}
+
+.bet-control button:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bet-input {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    background-color: transparent;
+    color: var(--plinko-text-primary);
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 700;
+    outline: none;
+}
+
+/* Hide number input arrows */
+.bet-input::-webkit-outer-spin-button,
+.bet-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bet-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.play-button {
+    background: linear-gradient(180deg, var(--plinko-green) 0%, var(--plinko-green-dark) 100%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #15803d; /* 3D effect */
+}
+
+.play-button:disabled {
+    background: #4b5563;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    border-bottom: 3px solid #374151;
+}
+
+.play-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(34, 197, 94, 0.4);
+}
+
+.play-button:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 0 2px 15px rgba(34, 197, 94, 0.3);
+    border-bottom-width: 2px;
+}
+
+
+.multiplier-popup {
+    position: absolute;
+    font-size: 1.8rem; /* Made larger for more impact */
+    font-weight: 700;
+    text-shadow: 0 0 15px currentColor;
+    z-index: 100;
+    pointer-events: none;
+    transform: translateX(-50%);
+    animation: floatUpAndFade 2.5s ease-out forwards;
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -120px) scale(0.7);
+    }
+}

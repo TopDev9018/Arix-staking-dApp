@@ -1,0 +1,268 @@
+.earn-page-container {
+    padding: 0px 0px 24px 0px; /* No top padding, rely on .app-content */
+    /* background-color: var(--app-main-bg); */ /* Inherited from app-content-wrapper */
+}
+
+.earn-page-header-actions {
+    margin-bottom: 20px;
+    padding: 0 8px; /* Minimal padding if inside .app-content */
+}
+.earn-page-header-actions .wallet-info-text {
+    color: var(--app-primary-text-light);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+.earn-page-header-actions .ant-btn {
+    /* Styles come from global .ant-btn and theme */
+}
+
+/* Summary Card - This can be the #111215 section */
+.earn-summary-card-wrapper {
+    background-color: var(--app-bg-dark-section); /* #111215 */
+    border-radius: 0 0 12px 12px; /* As per spec */
+    padding: 20px;
+    margin-bottom: 32px;
+}
+
+.earn-summary-card { /* Individual stat boxes inside the wrapper */
+    background-color: var(--app-bg-dark-element) !important; /* #08090A */
+    border: 1px solid var(--app-border-color) !important;
+    border-radius: 12px !important; /* Standard radius for these boxes */
+    text-align: center;
+}
+.earn-summary-card .ant-card-body {
+    padding: 16px !important;
+}
+
+.summary-stat-col .ant-statistic .ant-statistic-title {
+    color: var(--app-primary-text-light) !important;
+    opacity: 0.7 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 4px !important;
+    font-weight: 500;
+}
+.summary-stat-col .ant-statistic .ant-statistic-content {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: var(--app-primary-text-light) !important;
+}
+.summary-stat-col .ant-statistic .ant-statistic-content .ant-statistic-content-suffix {
+    color: var(--app-primary-text-light) !important;
+    opacity: 0.7;
+}
+.summary-value-equivalent {
+    color: var(--app-primary-text-light) !important;
+    opacity: 0.6 !important;
+    font-size: 0.85rem !important;
+    display: block;
+    margin-top: -4px;
+    margin-bottom: 12px;
+}
+.ant-statistic-value-success { /* For green $ value */
+    color: #4CAF50 !important;
+}
+
+.staking-plans-container {
+    margin-bottom: 32px;
+}
+.staking-plans-title.section-title {
+    color: var(--app-primary-text-light) !important;
+    margin-bottom: 8px !important;
+}
+.staking-plans-subtitle {
+    color: var(--app-primary-text-light) !important;
+    opacity: 0.8;
+    margin-bottom: 24px !important;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.staking-plan-col {
+    display: flex;
+}
+.staking-plan-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-width: 1px !important;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: var(--app-bg-dark-element) !important;
+    border-color: var(--app-border-color) !important;
+    color: var(--app-primary-text-light) !important;
+}
+.staking-plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+.staking-plan-card .ant-card-body {
+    flex-grow: 1;
+    padding: 20px !important;
+    color: var(--app-primary-text-light) !important;
+}
+
+.plan-key-tag.ant-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: rgba(163, 174, 207, 0.1) !important;
+    border-color: rgba(163, 174, 207, 0.2) !important;
+    color: var(--app-primary-text-light) !important;
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.plan-card-title {
+    color: var(--app-primary-text-light) !important;
+    font-weight: 600 !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 18px !important;
+    text-align: left;
+}
+
+.plan-stat-item {
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+.plan-stat-label {
+    color: var(--app-primary-text-light);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+.plan-stat-label .info-icon {
+    margin-left: 5px;
+    color: var(--app-primary-text-light);
+    opacity: 0.5;
+    cursor: help;
+}
+.plan-stat-value {
+    color: var(--app-primary-text-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.plan-stat-value.success-text { color: #4CAF50; }
+.plan-stat-value.error-text { color: #F44336; }
+
+.plan-stat-sub-value {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--app-primary-text-light);
+    opacity: 0.6;
+    margin-top: 3px;
+}
+
+.plan-referral-info {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--app-border-color);
+}
+.referral-info-title {
+    color: var(--app-primary-text-light);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+.referral-detail {
+    display: block;
+    color: var(--app-primary-text-light);
+    opacity: 0.9;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+.select-plan-button.ant-btn {
+    width: calc(100% - 0px);
+    margin: 8px 0 0 0;
+    font-weight: 600 !important;
+    height: 40px !important;
+    font-size: 0.95rem !important;
+    /* Primary button style from App.css will apply */
+}
+
+.staking-plan-card .ant-card-actions {
+    background-color: var(--app-bg-dark-element) !important;
+    border-top: 1px solid var(--app-border-color) !important;
+    padding: 12px 20px !important;
+}
+.staking-plan-card .ant-card-actions > li {
+    margin: 0 !important;
+}
+.staking-plan-card .ant-card-actions > li > span {
+    width: 100%;
+    display: block;
+}
+
+.active-stakes-section {
+    margin-top: 40px;
+}
+.active-stakes-section .section-title {
+    /* Uses global .section-title */
+    margin-bottom: 20px;
+}
+
+/* Modal Styles - Inherits from App.css and theme */
+.stake-modal .modal-input-label,
+.unstake-details-modal-content .modal-input-label {
+    /* uses .modal-input-label from App.css */
+}
+
+.stake-modal .themed-input-number.large-input .ant-input-number-input {
+    font-size: 1rem !important;
+    padding: 8px 11px !important;
+    /* Input styling from theme */
+}
+
+.stake-modal .modal-calculated-arix {
+    font-weight: 500;
+    margin-top: 12px;
+    padding: 10px;
+    background: rgba(163, 174, 207, 0.05);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    border: 1px solid rgba(163, 174, 207, 0.1);
+    color: var(--app-primary-text-light);
+}
+.stake-modal .modal-calculated-arix .price-reference {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+.stake-modal .modal-calculated-arix.insufficient {
+    color: #F44336;
+    background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.2);
+}
+.stake-modal .insufficient-balance-warning {
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    color: #F44336;
+}
+
+.stake-modal .modal-divider,
+.unstake-details-modal-content .modal-divider {
+    border-color: var(--app-border-color) !important;
+    margin: 20px 0 !important;
+}
+
+.unstake-confirm-modal .modal-text,
+.unstake-details-modal-content .modal-text {
+    /* Uses .modal-text from App.css */
+}
+
+.unstake-confirm-modal .modal-descriptions,
+.unstake-details-modal-content .modal-descriptions {
+    margin-top: 12px;
+    /* Uses .modal-descriptions from App.css */
+}
+
