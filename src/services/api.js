@@ -16,8 +16,7 @@ if (!VITE_BACKEND_API_URL) {
 }
 
 const apiClient = axios.create({
-  baseURL: `https://83af-51-68-181-153.ngrok-free.app/api`,
-  // baseURL: `${VITE_BACKEND_API_URL}/api`
+  baseURL: `${VITE_BACKEND_API_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 'true',
